@@ -81,15 +81,19 @@ class RegScreen extends StatelessWidget {
 
                   SizedBox(height: 42,),
 
-                  SizedBox(width: 154, height: 42, child:
-                  ElevatedButton(onPressed: () {}, child:
-                  Text('Войти'),
+                  SizedBox(
+                    width: 154, height: 42,
+                    child:  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/calc');
+                      },
+                    child: Text('Войти'),
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF0079D0),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius
                           .circular(36),),
-                    ),
-                  )
+                     ),
+                    )
                   ),
 
                 ],
