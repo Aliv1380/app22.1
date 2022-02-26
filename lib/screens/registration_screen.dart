@@ -1,4 +1,5 @@
 
+import 'package:app22/utils/global_theme.dart';
 import 'package:flutter/material.dart';
 
 const borderStyle = OutlineInputBorder(
@@ -23,6 +24,7 @@ class RegScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: globalTheme(),
       home: Scaffold(
         body: SingleChildScrollView(
           child: Container(

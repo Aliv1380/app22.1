@@ -1,20 +1,14 @@
 //import 'dart:js';
 import 'dart:ui';
-
-import 'package:app22/app_bar_screen.dart';
 import 'package:flutter/material.dart';
-import 'calc_screen.dart';
-import 'example_radio_switch.dart';
-import 'first_screen.dart';
-import 'navidation_drawer_screen.dart';
-import 'registration_screen.dart';
 
-//RegScreen
-//MyApp
-//CalcScreen
-//ExRadioSwitch
-//NavigstionDrawerScreen
-//MyAppBar
+//import 'package:app22/screens/registration_screen.dart';
+import 'package:app22/screens/app_bar_screen.dart';
+import 'screens/calc_screen.dart';
+import 'screens/example_radio_switch.dart';
+import 'screens/first_screen.dart';
+import 'screens/navidation_drawer_screen.dart';
+import 'screens/registration_screen.dart';
 
 void main() {
   runApp(
@@ -25,11 +19,16 @@ void main() {
         '/':(context)=>MyFirstScreen(),
         '/reg':(context)=>RegScreen(),
         '/calc':(context)=>CalcScreen(),
-        '/myAppBar':(context)=>MyAppBar(),
+        '/myAppBar':(context)=>MyAppBarScreen(),
       },
     ),
   );
+  // runApp(const MyApp());
+  // RegScreen
+  //MyApp
+  //CalcScreen
+  //ExRadioSwitch
+  //NavigstionDrawerScreen
+  //MyAppBar
 
-
- // runApp(const MyApp());
 }
