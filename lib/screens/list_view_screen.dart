@@ -9,12 +9,12 @@ class ListViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: SimpleListSeparated(),
+        body: ClicListBuilder(),
       ),
     );
   }
 }
-
+//-----------------------------------------------------------------------
 class SimpleList extends StatelessWidget {
   const SimpleList({Key? key}) : super(key: key);
 
@@ -40,8 +40,7 @@ class SimpleList extends StatelessWidget {
     );
   }
 }
-
-
+//------------------------------------------------------------------------
 
 class MyListItem extends StatelessWidget {
   const MyListItem({Key? key, required this.number}) : super(key: key);
@@ -63,11 +62,10 @@ class MyListItem extends StatelessWidget {
     );
   }
 }
-
+//------------------------------------------------------------------------------
 class SimpleListBuilder extends StatelessWidget {
   SimpleListBuilder({Key? key}) : super(key: key);
   var list = List<int>.generate(50, (i) => i+1);
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -81,7 +79,7 @@ class SimpleListBuilder extends StatelessWidget {
     );
   }
 }
-
+//-----------------------------------------------------------------------------
 class SimpleListSeparated extends StatelessWidget {
   SimpleListSeparated({Key? key}) : super(key: key);
   var list = List<int>.generate(50, (i) => i+1);
@@ -100,3 +98,57 @@ class SimpleListSeparated extends StatelessWidget {
     );
   }
 }
+//------------------------------------------------------------------------------
+class ClicListBuilder extends StatefulWidget {
+  const ClicListBuilder({Key? key}) : super(key: key);
+  @override
+  _ClicListBuilderState createState() => _ClicListBuilderState();
+}
+class _ClicListBuilderState extends State<ClicListBuilder> {
+  int _selectedIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 20,
+      itemBuilder: (BuildContext, int index) {
+        return ListTile(
+          title: Text('Item $index'),
+          onTap: (){
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+        );
+      }
+    );
+  }
+}
+
+//-------------------------------------------------------
+class SimpleListViewIcon extends StatelessWidget {
+  const SimpleListViewIcon({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      scrollDirection: Axis.vertical,
+      children: const <Widget>[
+        ListTile(
+          leading: Icon(Icons.map),
+          title: Text('Map'),
+        ),
+        ListTile(
+          leading: Icon(Icons.add_a_photo),
+          title: Text('Photo'),
+        ),ListTile(
+          leading: Icon(Icons.add_call),
+          title: Text('Call'),
+        ),ListTile(
+          leading: Icon(Icons.add_link),
+          title: Text('Add link'),
+        ),
+      ],
+    );
+  }
+}
+//-------------------------------------------------------------------
+
