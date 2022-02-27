@@ -1,5 +1,6 @@
 //import 'dart:js';
 import 'dart:ui';
+import 'package:app22/screens/list_view_screen.dart';
 import 'package:flutter/material.dart';
 
 //import 'package:app22/screens/registration_screen.dart';
@@ -12,16 +13,22 @@ import 'screens/registration_screen.dart';
 
 void main() {
   runApp(
-    MaterialApp(
-      title: 'Named Routes',
-      initialRoute: '/',
-      routes: {
-        '/':(context)=>MyFirstScreen(),
-        '/reg':(context)=>RegScreen(),
-        '/calc':(context)=>CalcScreen(),
-        '/myAppBar':(context)=>MyAppBarScreen(),
-      },
-    ),
+      ListViewScreen()
+
+
+    // MaterialApp(
+    //   title: 'Named Routes',
+    //   initialRoute: '/',
+    //   routes: {
+    //     '/':(context)=>MyFirstScreen(),
+    //     '/reg':(context)=>RegScreen(),
+    //     '/calc':(context)=>CalcScreen(),
+    //     '/myAppBar':(context)=>MyAppBarScreen(),
+    //   },
+    // ),
+
+
+
   );
   // runApp(const MyApp());
   // RegScreen
