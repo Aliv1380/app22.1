@@ -1,6 +1,7 @@
 //import 'dart:js';
 import 'dart:ui';
 import 'package:app22/screens/list_view_screen.dart';
+import 'package:app22/screens/network_screen.dart';
 import 'package:app22/screens/shared_preferences_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ import 'screens/registration_screen.dart';
 
 void main() {
   runApp(
-      SharPefScreen()
+      NetworkScreen()
 
 
     // MaterialApp(
