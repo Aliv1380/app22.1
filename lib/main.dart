@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:app22/screens/list_view_screen.dart';
 import 'package:app22/screens/network_screen.dart';
 import 'package:app22/screens/shared_preferences_screen.dart';
+import 'package:app22/screens/user_tasks.dart';
+import 'package:app22/screens/users_list_screen.dart';
 import 'package:flutter/material.dart';
 
 //import 'package:app22/screens/registration_screen.dart';
@@ -15,7 +17,23 @@ import 'screens/registration_screen.dart';
 
 void main() {
   runApp(
-      NetworkScreen()
+      UserTasksScreen()
+//       MaterialApp(
+//         title: 'Named Routes',
+//         initialRoute: '/',
+//         routes: {
+//           '/':(context)=>UsersListScreen(),
+//           '/tasks':(context)=>UserTasksScreen(),
+//
+//         },
+//       )
+
+
+
+  );
+
+
+
 
 
     // MaterialApp(
@@ -31,7 +49,8 @@ void main() {
 
 
 
-  );
+  //ListViewScreen
+  //   NetworkScreen()
   // runApp(const MyApp());
   // RegScreen
   //MyApp

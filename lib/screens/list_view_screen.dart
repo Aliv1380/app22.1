@@ -14,7 +14,8 @@ class ListViewScreen extends StatelessWidget {
     );
   }
 }
-//-----------------------------------------------------------------------
+//далее разные варианты формирования спика
+// Простой список-------------------------------------
 class SimpleList extends StatelessWidget {
   const SimpleList({Key? key}) : super(key: key);
 
@@ -40,7 +41,7 @@ class SimpleList extends StatelessWidget {
     );
   }
 }
-//------------------------------------------------------------------------
+//Список контейнеров-------------------------------------------------------
 
 class MyListItem extends StatelessWidget {
   const MyListItem({Key? key, required this.number}) : super(key: key);
@@ -62,7 +63,7 @@ class MyListItem extends StatelessWidget {
     );
   }
 }
-//------------------------------------------------------------------------------
+//Построитель списка-----------------------------------------------------------
 class SimpleListBuilder extends StatelessWidget {
   SimpleListBuilder({Key? key}) : super(key: key);
   var list = List<int>.generate(50, (i) => i+1);
@@ -79,7 +80,7 @@ class SimpleListBuilder extends StatelessWidget {
     );
   }
 }
-//-----------------------------------------------------------------------------
+//список с разделителями-----------------------------------------------------------------------------
 class SimpleListSeparated extends StatelessWidget {
   SimpleListSeparated({Key? key}) : super(key: key);
   var list = List<int>.generate(50, (i) => i+1);
@@ -98,7 +99,7 @@ class SimpleListSeparated extends StatelessWidget {
     );
   }
 }
-//------------------------------------------------------------------------------
+//Кликабельный список-----------------------------------------------------
 class ClicListBuilder extends StatefulWidget {
   const ClicListBuilder({Key? key}) : super(key: key);
   @override
@@ -124,7 +125,7 @@ class _ClicListBuilderState extends State<ClicListBuilder> {
   }
 }
 
-//-------------------------------------------------------
+//простой список с иконками ----------------------------------------------
 class SimpleListViewIcon extends StatelessWidget {
   const SimpleListViewIcon({Key? key}) : super(key: key);
   @override
