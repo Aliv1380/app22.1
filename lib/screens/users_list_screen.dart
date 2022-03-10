@@ -1,8 +1,12 @@
 
+import 'package:app22/screens/user_tasks.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dart:ui';
+
+import '../main.dart';
 
 //Загрузка данных
 //создаем класс аналогичный загружаемым данным, и в нем функцию создающую объекты из источника данных
@@ -14,8 +18,9 @@ class User {
   final String email;
   final String phone;
   final String website;
-  // final Address address;
-//  final Address company;
+  final Company company;
+  final Address address;
+
   User({
     required this.id,
     required this.name,
@@ -23,8 +28,9 @@ class User {
     required this.username,
     required this.phone,
     required this.website,
-    // required this.address,
-//    required this.company,
+    required this.company,
+    required this.address,
+//
   });
   factory User.fromJson(Map<String, dynamic> json){
     return User(
@@ -34,13 +40,30 @@ class User {
       username: json['username'],
       phone: json['phone'],
       website: json['website'],
-      // address: json['address'],
+      company: Company(
+        name: json['company']['name'],
+        catchPhrase: json['company']['catchPhrase'],
+        bs: json['company']['bs'],
+      ),
+
+
+      address: Address(
+        street: json['address']['street'],
+        suite: json['address']['suite'],
+        city: json['address']['city'],
+        zipcode: json['address']['zipcode'],
+        geo: Geo(
+            lat: json['address']['geo']['lat'],
+            lng: json['address']['geo']['lng'])
+
+      ),
+
       // street: json['street'],
       // suite: json['suite'],
       // city: json['city'],
       // zipcode: json['zipcode'],
  //     company: ,
-      // company: json['company'],
+      //
       // company: json['company'],
       // company: json['company'],
       // company: json['company'],
@@ -89,13 +112,13 @@ class Address {
   final String suite;
   final String city;
   final String zipcode;
-//  final Geo geo;
+  final Geo geo;
   Address({
     required this.street,
     required this.suite,
     required this.city,
     required this.zipcode,
-//    required this.geo,
+    required this.geo,
   });
   factory Address.fromJson(Map<String, dynamic> json){
     return Address(
@@ -103,6 +126,7 @@ class Address {
       suite: json['suite'],
       city: json['city'],
       zipcode: json['zipcode'],
+      geo: json['zipcode'],
     );
   }
 }
@@ -132,11 +156,66 @@ Future<List<Company>> fetchCompany() async{
 
 //отрисовка экрана
 class UsersListScreen extends StatelessWidget {
-  const UsersListScreen({Key? key}) : super(key: key);
+  UsersListScreen({Key? key}) : super(key: key);
+  final _messengerKey = GlobalKey<ScaffoldMessengerState>();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: _messengerKey,
+
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Список пользователей'),
+        ),
+
+        //---------------------------------------------------------------------
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                decoration: const BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Container(
+                  height: 500,
+                  child: Text('Навигация'),
+                ),
+              ),
+
+              ListTile(
+                leading: const Icon(Icons.one_k),
+                title: const Text('Экран авторизации'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.one_k),
+                title: const Text('Экран пользователей'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/users_list');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.one_k),
+                title: const Text('Экран регистрации'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/reg');
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.one_k),
+                title: const Text('Экран ошибки'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/login_error');
+                },
+              ),
+            ],
+          ),
+
+        ),
         body: ClicUsersListBuilder(),
       ),
     );
@@ -182,9 +261,8 @@ class _ClicUsersListBuilderState extends State<ClicUsersListBuilder> {
                     title: Text('ID # ${usersListData[index].id}  user name ${usersListData[index].name}'),
                     subtitle: Text(usersListData[index].email),
                     onTap: (){
-                      Navigator.pushNamed(context, '/tasks',
-                          arguments: usersListData[index].id);
-
+       //               Navigator.pushNamed(context, '/tasks', arguments: usersListData[index]);
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>UserTasksScreen(usersListData[index])));
                       setState(() {
                         _selectedIndex = index;
                       });

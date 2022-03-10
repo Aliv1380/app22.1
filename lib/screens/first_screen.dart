@@ -1,12 +1,30 @@
 
 
+//import 'dart:html';
 import 'dart:ui';
-import 'package:flutter/cupertino.dart';
+import 'package:app22/screens/registration_screen.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+import 'dart:async';
+import 'dart:convert';
 
+import 'log_par.dart';
 
 class MyFirstScreen extends StatelessWidget {
-  const MyFirstScreen({Key? key}) : super(key: key);
+  MyFirstScreen({Key? key}) : super(key: key);
+
+  String login = "";
+  String password = "";
+
+  bool lpValid(){
+    if(login == "111" && password == '111') return true;
+    return false;
+  }
+
+ // final List<LogPar> lpList = [];
+
 
   // This widget is the root of your application.
   @override
@@ -30,7 +48,12 @@ class MyFirstScreen extends StatelessWidget {
       fontWeight: FontWeight.bold,
     );
 
+    //читаем файл с логинами
+  //readLogPar();
+    //создавать массив с LogPar
+
     return MaterialApp(
+
       home: Scaffold(body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -45,39 +68,44 @@ class MyFirstScreen extends StatelessWidget {
               SizedBox(height: 50,),
               const SizedBox(width: 110,height:84 ,child: Image(image: AssetImage('assets/logo.png')),),
               SizedBox(height: 20,),
-              const Text('Введите логин в виде 10 цифр номера телефона',
+              const Text('Предустановленный Логин 111, Предустановленный пароль 111',
                 style: TextStyle(fontSize:16, color: Color.fromRGBO(0, 0, 0, 0.6)),),
               SizedBox(height: 20,),
 
-
-
-              const TextField(decoration:
-              InputDecoration(filled: true, fillColor: Color(0xFFECEFF1),
+              TextField(
+                decoration: InputDecoration(filled: true, fillColor: Color(0xFFECEFF1),
                 focusedBorder: borderStyle,
                 enabledBorder: borderStyle,
-                labelText: 'Логин',
-              ),
+                labelText: 'Логин'),
                 keyboardType: TextInputType.phone,
+                onChanged: (value){
+                  login = value;
+                },
               ),
               SizedBox(height: 30,),
 
-              const TextField(obscureText: true, decoration:
+              TextField(
+                onChanged: (val) => password = val,
+                obscureText: true, decoration:
               InputDecoration(filled: true, fillColor: Color(0xFFECEFF1),
                 focusedBorder: borderStyle,
                 enabledBorder: borderStyle,
                 labelText: 'Пароль',
               ),
                 keyboardType: TextInputType.text,
+
               ),
-
-
 
               SizedBox(height: 30,),
 
               SizedBox(width: 154, height: 42, child:
               ElevatedButton(
                 onPressed: (){
-                  Navigator.pushNamed(context, '/calc');
+                  if(lpValid()) {
+                    Navigator.pushNamed(context, '/users_list');
+                  }else{
+                    Navigator.pushNamed(context, '/login_error');
+                  }
                 },
                 child: const Text('Войти'),
                 style: ElevatedButton.styleFrom(
@@ -97,7 +125,7 @@ class MyFirstScreen extends StatelessWidget {
               InkWell(
                 child: const Text('Забыли пароль?', style: myInkWellTextStyle,),
                 onTap: () {
-                  Navigator.pushNamed(context, '/myAppBar');
+                  Navigator.pushNamed(context, '/nav_dro');
                 },
               ),
             ],),
